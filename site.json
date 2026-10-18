@@ -24,21 +24,21 @@
     "cards": [
       {
         "label": "Wooden Toys",
-        "img": "img/cat_wooden.jpg",
+        "img": "cat_wooden.jpg",
         "cats": [
           "Wooden Toys"
         ]
       },
       {
         "label": "RC & Electronic Toys",
-        "img": "img/cat_rc.jpg",
+        "img": "cat_rc.jpg",
         "cats": [
           "RC & Electronic Toys"
         ]
       },
       {
         "label": "STEM & Educational",
-        "img": "img/cat_stem.jpg",
+        "img": "cat_stem.jpg",
         "cats": [
           "STEM & Robotics",
           "Educational Toys"
@@ -46,35 +46,35 @@
       },
       {
         "label": "Baby & Toddler Toys",
-        "img": "img/cat_baby.jpg",
+        "img": "cat_baby.jpg",
         "cats": [
           "Baby & Toddler Toys"
         ]
       },
       {
         "label": "Dolls & Figures",
-        "img": "img/cat_dolls.jpg",
+        "img": "cat_dolls.jpg",
         "cats": [
           "Dolls & Figures"
         ]
       },
       {
         "label": "Plush & Soft Toys",
-        "img": "img/cat_plush.jpg",
+        "img": "cat_plush.jpg",
         "cats": [
           "Plush & Soft Toys"
         ]
       },
       {
         "label": "Outdoor & Sports Toys",
-        "img": "img/cat_outdoor.jpg",
+        "img": "cat_outdoor.jpg",
         "cats": [
           "Outdoor & Sports Toys"
         ]
       },
       {
         "label": "Puzzles & Board Games",
-        "img": "img/cat_games.jpg",
+        "img": "cat_games.jpg",
         "cats": [
           "Puzzles & Board Games"
         ]
