@@ -1,0 +1,85 @@
+{
+  "info": {
+    "heroLine1": "The World’s Toys,",
+    "heroLine2": "Delivered to Europe",
+    "heroDesc": "Discover toy collections from selected manufacturers, organized for European buyers. Browse by category, explore product catalogs, and contact us for pricing, MOQ, lead times, and available compliance documentation.",
+    "welcome": "",
+    "companyName": "Toyza World B.V.",
+    "email": "procure@toyzaworld.nl",
+    "phone": "",
+    "kvk": "",
+    "address": "",
+    "contactTitle": "Request a Catalog",
+    "contactText": "Tell us which categories you are buying for. We reply with catalogs, EXW pricing, MOQ, lead times and the compliance documents available for your market.",
+    "legalNote": "",
+    "footerCopyright": "© 2026 Toyza World B.V. — Netherlands. All rights reserved.",
+    "footerTagline": "Made for a More Playful Tomorrow"
+  },
+  "seo": {
+    "title": "ToyzaWorld — Global Toys for European Markets",
+    "description": "Browse toy catalogs from selected manufacturers, organized for European B2B buyers. Request EXW pricing, MOQ, lead times and compliance documents.",
+    "keywords": "toy wholesale, toy import Europe, B2B toys, toy catalogs, EN71"
+  },
+  "home": {
+    "cards": [
+      {
+        "label": "Wooden Toys",
+        "img": "img/cat_wooden.jpg",
+        "cats": [
+          "Wooden Toys"
+        ]
+      },
+      {
+        "label": "RC & Electronic Toys",
+        "img": "img/cat_rc.jpg",
+        "cats": [
+          "RC & Electronic Toys"
+        ]
+      },
+      {
+        "label": "STEM & Educational",
+        "img": "img/cat_stem.jpg",
+        "cats": [
+          "STEM & Robotics",
+          "Educational Toys"
+        ]
+      },
+      {
+        "label": "Baby & Toddler Toys",
+        "img": "img/cat_baby.jpg",
+        "cats": [
+          "Baby & Toddler Toys"
+        ]
+      },
+      {
+        "label": "Dolls & Figures",
+        "img": "img/cat_dolls.jpg",
+        "cats": [
+          "Dolls & Figures"
+        ]
+      },
+      {
+        "label": "Plush & Soft Toys",
+        "img": "img/cat_plush.jpg",
+        "cats": [
+          "Plush & Soft Toys"
+        ]
+      },
+      {
+        "label": "Outdoor & Sports Toys",
+        "img": "img/cat_outdoor.jpg",
+        "cats": [
+          "Outdoor & Sports Toys"
+        ]
+      },
+      {
+        "label": "Puzzles & Board Games",
+        "img": "img/cat_games.jpg",
+        "cats": [
+          "Puzzles & Board Games"
+        ]
+      }
+    ],
+    "featured": []
+  }
+}

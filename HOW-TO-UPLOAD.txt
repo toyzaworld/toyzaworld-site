@@ -1,0 +1,38 @@
+TOYZAWORLD.COM — NEW HOMEPAGE
+==============================
+
+What is in this folder
+----------------------
+index.html     The new homepage (design, category cards with their links,
+               "All Categories" pop-up, "Viewed" link colour, contact form).
+catalog.json   Your catalogue: 325 links, 23 categories (from your dashboard export).
+site.json      Homepage texts, contact details, SEO, and which categories
+               each of the 8 category cards shows.
+img/           The 15 pictures used on the page.
+
+How to put it live
+------------------
+1. Log in to your hosting control panel (File Manager) or FTP.
+2. Open the folder where toyzaworld.com's files are (often "public_html").
+3. BACKUP FIRST: download your current index.html and keep it safe
+   (or rename it on the server to index-old.html).
+4. Upload index.html, catalog.json, site.json and the img folder
+   into that same folder. Replace index.html when asked.
+5. Do NOT delete dashboard.html — the footer "Dashboard" link still opens it.
+6. Open https://www.toyzaworld.com in your browser and press Ctrl+F5.
+
+Updating the catalogue later
+----------------------------
+1. Open your dashboard, change the Catalogue Tree as usual.
+2. Click "Export current tree" and save the file.
+3. Rename it to catalog.json and upload it, replacing the old catalog.json.
+Visitors see the change on their next page load.
+
+Changing texts or the category cards
+------------------------------------
+Edit site.json with any text editor (keep the quotes and commas), then upload it.
+Each card has: "label" (the name shown), "img" (picture), "cats" (the exact
+category names from your catalogue that the card shows).
+
+Note: the page must be opened from the web server (https://...), not by
+double-clicking the file on your computer, or the catalogue will not load.
