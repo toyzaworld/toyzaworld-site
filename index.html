@@ -615,15 +615,43 @@ $('inquiry').addEventListener('submit',function(e){
 /* ---------- data load (static files on your server) ---------- */
 function onData(){S.loaded=true;renderPublic();}
 async function getJSON(path){var r=await fetch(path+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error(path+' '+r.status);return r.json();}
+/* Live data from the existing ToyzaWorld dashboard (Firebase Firestore, public read) */
+var FS='https://firestore.googleapis.com/v1/projects/toyzaworld/databases/(default)/documents/siteConfig/';
+var FS_KEY='AIzaSyA7_yhgxYtUb_2YroHjzF_fO_CIsWCOxg8';
+function fsVal(v){var k=Object.keys(v)[0];
+  if(k==='mapValue'){var o={},f=v[k].fields||{};Object.keys(f).forEach(function(n){o[n]=fsVal(f[n]);});return o;}
+  if(k==='arrayValue')return (v[k].values||[]).map(fsVal);
+  if(k==='integerValue')return parseInt(v[k],10);
+  if(k==='nullValue')return null;
+  return v[k];}
+async function fsDoc(name){var r=await fetch(FS+name+'?key='+FS_KEY,{cache:'no-store'});if(!r.ok)throw new Error(name+' '+r.status);var d=await r.json();var o={};Object.keys(d.fields||{}).forEach(function(n){o[n]=fsVal(d.fields[n]);});return o;}
+function nodesToLinks(nodes){
+  var by={};nodes.forEach(function(n){by[n.id]=n;});
+  function gone(n){while(n){if(n.hidden||n.deleted)return true;n=by[n.parent];}return false;}
+  var out=[];
+  nodes.forEach(function(n){
+    if(n.type!=='brands'||!n.website||gone(n))return;
+    var cat=by[n.parent],ctry=cat&&by[cat.parent];
+    if(!cat||!ctry)return;
+    out.push({name:n.label,url:n.website,country:ctry.label,countryCode:ctry.id,category:cat.label,notes:n.desc||''});
+  });
+  return out;
+}
+var INFO_MAP={heroLine1:'heroLine1',heroLine2:'heroLine2',heroText:'heroDesc',welcomeMessage:'welcome',companyName:'companyName',address:'address',email:'email',phone:'phone',kvk:'kvk',contactTitle:'contactTitle',contactText:'contactText',legalNote:'legalNote',footerCopyright:'footerCopyright',footerTagline:'footerTagline'};
 async function init(){
   renderPublic();
+  // 1. homepage layout settings (category cards, featured, SEO) from site.json
   try{var cfg=await getJSON('site.json');
     if(cfg.info)S.info=Object.assign(clone(DEFAULT_INFO),cfg.info);
     if(cfg.seo)S.seo=Object.assign(clone(DEFAULT_SEO),cfg.seo);
     if(cfg.home){S.home={cards:(cfg.home.cards&&cfg.home.cards.length)?cfg.home.cards:clone(DEFAULT_CARDS),featured:cfg.home.featured&&cfg.home.featured.length?cfg.home.featured:null};}
-  }catch(e){/* site.json is optional: built-in defaults are used */}
-  try{var cat=await getJSON('catalog.json');S.links=Array.isArray(cat)?cat:(cat.links||[]);}
-  catch(e){S.loadError=true;}
+  }catch(e){}
+  // 2. texts + contact details from the dashboard (siteConfig/siteInfo)
+  try{var si=await fsDoc('siteInfo');Object.keys(INFO_MAP).forEach(function(k){if(typeof si[k]==='string'&&si[k].trim())S.info[INFO_MAP[k]]=si[k].trim();});}
+  catch(e){}
+  // 3. catalogue from the dashboard (siteConfig/toyMap); catalog.json is the backup
+  try{var tm=await fsDoc('toyMap');var links=nodesToLinks(tm.nodes||[]);if(!links.length)throw new Error('empty');S.links=links;}
+  catch(e){try{var cat=await getJSON('catalog.json');S.links=Array.isArray(cat)?cat:(cat.links||[]);}catch(e2){S.loadError=true;}}
   onData();
 }
 init();
