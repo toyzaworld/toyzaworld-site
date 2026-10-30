@@ -47,11 +47,11 @@ h1,h2,h3{text-wrap:balance}
 .logo-word{font-size:30px;font-weight:800;letter-spacing:-.5px;line-height:1;color:var(--navy)}
 .logo-tag{font-size:11px;font-weight:600;letter-spacing:.2px;color:var(--navy)}
 .w1{color:var(--red)}.w2{color:var(--orange)}.w3{color:var(--gold)}.w4{color:var(--green)}.w5{color:var(--blue)}
-.main-nav{display:flex;gap:28px;margin-left:16px;font-weight:600;font-size:15px}
+.main-nav{display:flex;gap:22px;margin-left:8px;font-weight:600;font-size:15px;white-space:nowrap}
 .main-nav a{text-decoration:none;padding-block:10px}
 .main-nav a:hover{color:var(--link)}
-.header-tools{flex:1 1 260px;display:flex;justify-content:flex-end;align-items:center;gap:14px}
-.search{position:relative;flex:0 1 340px;min-width:0}
+.header-tools{flex:1 1 0;min-width:0;margin-left:12px;display:flex;justify-content:flex-end;align-items:center;gap:10px}
+.search{position:relative;flex:0 1 280px;min-width:150px}
 .search input{width:100%;height:44px;border:1px solid var(--line);background:var(--field);border-radius:10px;padding:0 44px 0 16px;font:inherit;font-size:14px;color:var(--navy)}
 .search svg{position:absolute;right:14px;top:13px;pointer-events:none}
 .menu-btn{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:8px;background:var(--white);cursor:pointer;align-items:center;justify-content:center;color:var(--navy)}
@@ -81,7 +81,7 @@ h1,h2,h3{text-wrap:balance}
 .perk{display:flex;flex-direction:column;gap:6px}
 .perk b{font-size:15px}.perk span{font-size:13px;color:var(--muted)}
 .hero-media{flex:1 1 560px;min-height:420px;position:relative}
-.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:100% 50%}
 @media (max-width:640px){.hero-copy{padding:40px 16px}.hero-media{min-height:280px}.perks{gap:24px}}
 
 /* Sections */
@@ -143,6 +143,34 @@ section.block{padding-block:56px 16px}
 .cat-links a.visited,.cat-group a.visited{background:#F4EFFA}
 .cat-links a.visited .go,.cat-group a.visited span{color:#6B3FA0}
 .cat-links a.visited::after,.cat-group a.visited::after{content:"Viewed";font-size:11px;font-weight:700;letter-spacing:.3px;color:#6B3FA0;background:#E9DFF5;border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:1px}
+/* Language switch */
+.lang{display:inline-flex;gap:6px;flex:0 0 auto}
+.lang button{border:2px solid transparent;background:transparent;border-radius:8px;padding:4px 8px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:14px;font-weight:700;color:var(--navy);opacity:.55;transition:opacity .15s,border-color .15s}
+.lang button:hover{opacity:.9}
+.lang button[aria-pressed="true"]{opacity:1;border-color:var(--navy)}
+.lang .flag{height:24px;width:auto;display:block;border-radius:3px;box-shadow:0 0 0 1px rgba(11,42,74,.25)}
+html[lang="nl"] .cat-links a.visited::after,html[lang="nl"] .cat-group a.visited::after{content:"Bekeken"}
+.cat-head img{height:auto;aspect-ratio:3/2;max-width:100%}
+/* Category picture placeholder (until a photo is uploaded) */
+.cat-head .ph{width:100%;aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;font-size:46px;font-weight:800;color:var(--navy);letter-spacing:-1px}
+/* Category sidebar */
+.cat-layout{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.cat-layout>.grid-cat{flex:999 1 560px;min-width:0}
+.cat-side{flex:1 1 240px;max-width:280px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 90px);border:1px solid var(--line);border-radius:10px;background:var(--white);padding:14px 8px 10px;max-height:calc(100vh - 110px);overflow:auto}
+.cat-side h3{margin:0 10px 8px;font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
+.cat-side ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.cat-side button{width:100%;display:flex;justify-content:space-between;gap:10px;align-items:baseline;text-align:left;font:inherit;font-size:14px;font-weight:600;color:var(--navy);background:transparent;border:0;border-radius:6px;padding:9px 10px;cursor:pointer;min-height:40px}
+.cat-side button:hover{background:var(--sky)}
+.cat-side button[aria-current="true"]{background:var(--navy);color:var(--white)}
+.cat-side .n{font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.cat-side button[aria-current="true"] .n{color:#C9D6E4}
+.cat-card.flash{box-shadow:0 0 0 3px var(--blue),var(--shadow-hover)}
+@media (max-width:900px){
+  .cat-side{position:static;max-width:none;flex-basis:100%;max-height:none}
+  .cat-side ul{flex-direction:row;flex-wrap:wrap;gap:6px}
+  .cat-side li{flex:0 0 auto}
+  .cat-side button{border:1px solid var(--line);border-radius:999px;padding:6px 12px;min-height:38px;width:auto}
+}
 /* Catalogue browser */
 .browser{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
 .countries{flex:1 1 200px;max-width:260px;border:1px solid var(--line);border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:2px}
@@ -178,10 +206,10 @@ section.block{padding-block:56px 16px}
 @media (max-width:900px){.arrow{display:none}}
 
 /* CTA + contact */
-.cta{background:var(--sky-2);margin-top:56px}
+.cta{background:var(--sky-2);margin-top:56px;overflow:hidden}
 .cta-row{max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:stretch}
 .cta-media{flex:0 1 380px;min-height:220px;position:relative}
-.cta-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center}
+.cta-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 35%}
 .cta-copy{flex:1 1 420px;min-width:0;padding:44px 32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center}
 .cta-copy h2{margin:0;font-size:clamp(26px,3vw,32px);font-weight:800}
 .cta-copy p{margin:0;color:var(--navy-2)}
@@ -256,7 +284,11 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
         <input id="q" type="search" placeholder="Search toys, categories, suppliers..." autocomplete="off">
         <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       </form>
-      <a class="btn btn-primary header-contact" href="#contact" style="min-height:44px;padding:0 20px;font-size:15px">Contact Us</a>
+      <div class="lang" role="group" aria-label="Language / Taal">
+        <button type="button" data-lang="nl" aria-pressed="false" lang="nl" title="Nederlands"><svg class="flag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="6" fill="#21468B"/><rect width="9" height="4" fill="#FFFFFF"/><rect width="9" height="2" fill="#AE1C28"/></svg><span class="lang-code">NL</span></button>
+        <button type="button" data-lang="en" aria-pressed="true" lang="en" title="English"><svg class="flag" viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukS"><path d="M0,0v30h60V0z"/></clipPath><clipPath id="ukT"><path d="M30,15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#ukS)"><path d="M0,0v30h60V0z" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#FFFFFF" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#ukT)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#FFFFFF" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></g></svg><span class="lang-code">EN</span></button>
+      </div>
+      <a class="btn btn-primary header-contact" href="#contact" style="min-height:44px;padding:0 20px;font-size:15px;white-space:nowrap">Contact Us</a>
     </div>
   </div>
 </header>
@@ -287,7 +319,7 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
       </div>
     </div>
     <div class="hero-media">
-      <img src="hero.jpg" alt="Smiling child hugging a teddy bear, surrounded by colourful wooden toys">
+      <img src="hero.jpg" alt="Smiling girl hugging a teddy bear in front of a world map, surrounded by colourful toys">
     </div>
   </div>
 </section>
@@ -295,9 +327,14 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
 <section class="block wrap" id="categories" aria-labelledby="catTitle">
   <div class="sec-head">
     <h2 id="catTitle">Explore by Category</h2>
-    <button type="button" class="btn btn-primary btn-sm" data-open-all><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>All Categories</button>
   </div>
-  <div class="grid grid-cat" id="catGrid"></div>
+  <div class="cat-layout">
+    <nav class="cat-side" aria-labelledby="sideTitle">
+      <h3 id="sideTitle">Categories</h3>
+      <ul id="catSide"></ul>
+    </nav>
+    <div class="grid grid-cat" id="catGrid"></div>
+  </div>
 </section>
 
 <section class="block wrap" id="featured" aria-labelledby="katTitle">
@@ -480,6 +517,97 @@ function store(k,v){try{localStorage.setItem(k,v);}catch(e){}}
 function load(k){try{return localStorage.getItem(k);}catch(e){return null;}}
 
 /* ---------- public render ---------- */
+/* ---------- Language (NL / EN) ---------- */
+var NL={
+"Dismiss":"Sluiten","Global Toys • European Markets":"Wereldwijd speelgoed • Europese markten","Open menu":"Menu openen","Close menu":"Menu sluiten","Main":"Hoofdmenu",
+"Home":"Home","Catalog":"Catalogus","About":"Over ons","How It Works":"Hoe het werkt","Contact":"Contact",
+"Search toys, categories, suppliers":"Zoek speelgoed, categorieën, leveranciers","Search toys, categories, suppliers...":"Zoek speelgoed...",
+"Contact Us":"Neem contact op","The World’s Toys,":"Speelgoed uit de hele wereld,","The World's Toys,":"Speelgoed uit de hele wereld,","Delivered to Europe":"geleverd in Europa",
+"Discover toy collections from selected manufacturers, organized for European buyers. Browse by category, explore product catalogs, and contact us for pricing, MOQ, lead times, and available compliance documentation.":"Ontdek speelgoedcollecties van geselecteerde fabrikanten, overzichtelijk voor Europese inkopers. Blader per categorie, bekijk productcatalogi en neem contact met ons op voor prijzen, MOQ, levertijden en beschikbare conformiteitsdocumentatie.",
+"Toyza World connects European retailers with the best toy manufacturers across 40+ countries. Explore our global network through an interactive catalog.":"Toyza World verbindt Europese retailers met de beste speelgoedfabrikanten in meer dan 40 landen. Verken ons wereldwijde netwerk via een interactieve catalogus.",
+"Welcome to Toyza World.":"Welkom bij Toyza World.",
+"Explore Catalogs":"Bekijk catalogi","Contact ToyzaWorld":"Contact met ToyzaWorld","Global Suppliers":"Wereldwijde leveranciers","Selected Manufacturers":"Geselecteerde fabrikanten",
+"B2B Focus":"B2B-focus","For European Buyers":"Voor Europese inkopers","Wide Categories":"Brede categorieën","Toys for Every Market":"Speelgoed voor elke markt",
+"Smiling girl hugging a teddy bear in front of a world map, surrounded by colourful toys":"Lachend meisje knuffelt een teddybeer voor een wereldkaart, omringd door kleurrijk speelgoed",
+"Child in a cardboard airplane costume with arms spread wide":"Kind in een kartonnen vliegtuigkostuum met gespreide armen",
+"Explore by Category":"Ontdek per categorie","Categories":"Categorieën","All Categories":"Alle categorieën","Featured Catalogs":"Uitgelichte catalogi","View All Catalogs →":"Bekijk alle catalogi →",
+"Why ToyzaWorld?":"Waarom ToyzaWorld?","Access to Diverse Collections":"Toegang tot diverse collecties","Browse":"Bekijk","our":"onze","catalogs from selected manufacturers.":"catalogi van geselecteerde fabrikanten.",
+"Direct Supplier Connection":"Direct contact met leveranciers","Get EXW pricing, MOQ and supplier details.":"Ontvang EXW-prijzen, MOQ en leveranciersgegevens.",
+"Support with Documentation":"Hulp bij documentatie","Request available compliance documents for your market.":"Vraag de beschikbare conformiteitsdocumenten voor uw markt aan.",
+"A Dedicated Partner":"Een vaste partner","Our team helps you find the right collections for your business.":"Ons team helpt u de juiste collecties voor uw bedrijf te vinden.",
+"1. Explore":"1. Ontdekken","Browse categories and find relevant catalogs.":"Blader door de categorieën en vind relevante catalogi.",
+"2. Request":"2. Aanvragen","Contact us for pricing, MOQ, lead time and documentation.":"Neem contact op voor prijzen, MOQ, levertijd en documentatie.",
+"3. Connect":"3. Verbinden","We introduce you to the right suppliers and support your next steps.":"We brengen u in contact met de juiste leveranciers en helpen bij de volgende stappen.",
+"Let’s Bring More Joy to Europe":"Samen brengen we meer speelplezier naar Europa","Explore our catalogs and find the next bestsellers for your market.":"Bekijk onze catalogi en vind de volgende bestsellers voor uw markt.",
+"Good Toys":"Goed speelgoed","Brighter":"Mooiere","Futures":"toekomst",
+"Request a Catalog":"Vraag een catalogus aan","Start Sourcing Smarter":"Slimmer inkopen begint hier",
+"Tell us which categories you are buying for. We reply with catalogs, EXW pricing, MOQ, lead times and the compliance documents available for your market.":"Laat ons weten voor welke categorieën u inkoopt. Wij sturen u catalogi, EXW-prijzen, MOQ, levertijden en de beschikbare conformiteitsdocumenten voor uw markt.",
+"Email":"E-mail","Copy":"Kopiëren","Phone":"Telefoon","Company":"Bedrijf","Address":"Adres","Company name":"Bedrijfsnaam","Country":"Land","Category":"Categorie","Any category":"Alle categorieën",
+"What are you looking for?":"Waar bent u naar op zoek?","Target products, quantities, price range, certificates needed (EN71, CE…)":"Gewenste producten, aantallen, prijsklasse, benodigde certificaten (EN71, CE…)",
+"Prepare Request":"Aanvraag opstellen","This page doesn’t send messages yet. Submitting prepares your request so you can copy it into an email.":"Deze pagina verstuurt nog geen berichten. Na het verzenden staat uw aanvraag klaar om in een e-mail te kopiëren.",
+"Footer":"Voettekst","Made for a More Playful Tomorrow":"Gemaakt voor een speelser morgen","Play Without Borders.":"Spelen zonder grenzen.","Play Without Borders":"Spelen zonder grenzen",
+"© 2026 Toyza World B.V. — Netherlands. All rights reserved.":"© 2026 Toyza World B.V. — Nederland. Alle rechten voorbehouden.",
+"© 2026 Toyza World — Zoetermeer, Netherlands. All rights reserved.":"© 2026 Toyza World — Zoetermeer, Nederland. Alle rechten voorbehouden.",
+"Close":"Sluiten","Search catalogs":"Catalogi zoeken","Search catalogs or categories…":"Zoek catalogi of categorieën…","Jump to category":"Ga naar categorie",
+"No catalogs yet.":"Nog geen catalogi.","Loading…":"Laden…","Loading catalogs…":"Catalogi laden…","No featured catalogs yet.":"Nog geen uitgelichte catalogi.","View Catalog →":"Bekijk catalogus →",
+"The catalog list could not be loaded. Please refresh the page or contact us.":"De cataloguslijst kon niet worden geladen. Vernieuw de pagina of neem contact met ons op.",
+"Copied":"Gekopieerd","Selected — press Ctrl+C":"Geselecteerd — druk op Ctrl+C","Please add your company name.":"Vul uw bedrijfsnaam in.",
+"Please enter a valid email address, for example buyer@company.eu.":"Vul een geldig e-mailadres in, bijvoorbeeld inkoop@bedrijf.nl.","Copy request":"Aanvraag kopiëren",
+/* categories */
+"Action & Blaster Toys":"Actie- & blasterspeelgoed","Arts & Crafts":"Knutselen & creatief","Baby & Toddler Toys":"Baby- & peuterspeelgoed","Construction Toys":"Bouwspeelgoed",
+"Decorative & Gift Items":"Decoratie & cadeauartikelen","Dolls & Figures":"Poppen & figuren","Educational Toys":"Educatief speelgoed","Kids Furniture & Indoor Play":"Kindermeubels & binnenspeelgoed",
+"Musical Toys":"Muziekspeelgoed","Outdoor & Sports Toys":"Buiten- & sportspeelgoed","Party & Novelty Toys":"Feest- & funartikelen","Plush & Soft Toys":"Knuffels & zacht speelgoed",
+"Pretend Play":"Rollenspel","Puzzles & Board Games":"Puzzels & bordspellen","RC & Electronic Toys":"RC- & elektronisch speelgoed","Retail Display & Merchandising":"Winkeldisplays & merchandising",
+"Retail Displays & Packaging":"Winkeldisplays & verpakking","Ride-On Toys":"Ride-on speelgoed","STEM & Robotics":"STEM & robotica","Vehicles & Die-Cast":"Voertuigen & die-cast",
+"Vhicles and Playsets":"Voertuigen & speelsets","Vehicles and Playsets":"Voertuigen & speelsets","Water & Beach Toys":"Water- & strandspeelgoed","Wooden Toys":"Houten speelgoed"
+};
+var LANG=(function(){var v=load('tw-lang');if(v==='nl'||v==='en')return v;return /^nl/i.test(navigator.language||'')?'nl':'en';})();
+function t(en){return LANG==='nl'&&NL[en]?NL[en]:en;}
+function nCat(n){return LANG==='nl'?(n+(n===1?' catalogus':' catalogi')):(n+(n===1?' catalog':' catalogs'));}
+var I18N_ATTRS=['placeholder','aria-label','alt','title'];
+function translateTree(root){
+  var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode&&n.parentNode.nodeName;return (p==='SCRIPT'||p==='STYLE'||p==='PRE')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
+  var n;while((n=w.nextNode())){
+    if(n.__en===undefined){ if(!n.nodeValue.trim())continue; n.__en=n.nodeValue; }
+    var raw=n.__en,core=raw.trim();
+    var out=(LANG==='nl'&&NL[core])?raw.replace(core,NL[core]):raw;
+    if(n.nodeValue!==out)n.nodeValue=out;
+  }
+  root.querySelectorAll('*').forEach(function(e){
+    if(e.closest('.lang'))return;
+    I18N_ATTRS.forEach(function(a){
+      if(!e.hasAttribute(a))return;
+      var k='data-en-'+a;if(!e.hasAttribute(k))e.setAttribute(k,e.getAttribute(a));
+      var en=e.getAttribute(k);e.setAttribute(a,LANG==='nl'&&NL[en]?NL[en]:en);
+    });
+  });
+}
+function applyLang(){
+  document.documentElement.lang=LANG;
+  document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===LANG));});
+  translateTree(document.body);
+}
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){
+  LANG=b.getAttribute('data-lang');store('tw-lang',LANG);renderPublic();
+});});
+
+/* ---------- Category pictures ----------
+   Upload a photo named  cat-<category-name>.jpg  (see CAT_FILES) to replace a picture. */
+function catFile(c){return 'cat-'+c.toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.jpg';}
+var OLD_IMG={'Wooden Toys':'cat_wooden.jpg','RC & Electronic Toys':'cat_rc.jpg','STEM & Robotics':'cat_stem.jpg','Educational Toys':'feat_edu.jpg','Baby & Toddler Toys':'cat_baby.jpg','Dolls & Figures':'cat_dolls.jpg','Plush & Soft Toys':'cat_plush.jpg','Outdoor & Sports Toys':'cat_outdoor.jpg','Puzzles & Board Games':'cat_games.jpg','Construction Toys':'feat_woodrange.jpg','Kids Furniture & Indoor Play':'feat_playground.jpg','Vehicles & Die-Cast':'feat_rccars.jpg'};
+var PH_COLORS=['#FDECEA','#FFF1E0','#FFF8D6','#E7F5EC','#E6F0FB','#F1EAFB'];
+function catPicture(c,ix){
+  var img=el('img');img.alt='';img.loading='lazy';var tried=0;
+  img.onerror=function(){
+    tried++;
+    if(tried===1&&OLD_IMG[c]){img.src=OLD_IMG[c];return;}
+    var ph=el('span','ph',t(c).charAt(0));ph.style.background=PH_COLORS[ix%PH_COLORS.length];ph.setAttribute('aria-hidden','true');
+    if(img.parentNode)img.parentNode.replaceChild(ph,img);
+  };
+  img.src=catFile(c);
+  return img;
+}
+
 function applyInfo(){
   var I=S.info;
   document.querySelectorAll('[data-bind]').forEach(function(n){var k=n.getAttribute('data-bind');n.textContent=I[k]!=null?I[k]:'';});
@@ -511,20 +639,43 @@ function trackVisit(a,u){
   });
   a.setAttribute('data-u',u);
 }
+function categoryList(){
+  var m={};visibleLinks().forEach(function(l){m[l.category]=1;});
+  return Object.keys(m).sort(function(a,b){return t(a).localeCompare(t(b),LANG);});
+}
+var currentCat=null;
+function renderSide(){
+  var ul=$('catSide');ul.textContent='';
+  categoryList().forEach(function(cat){
+    var n=cardLinks({cats:[cat]}).length;
+    var li=el('li');var b=el('button');b.type='button';
+    b.appendChild(el('span','',cat));b.appendChild(el('span','n','('+n+')'));
+    if(currentCat===cat)b.setAttribute('aria-current','true');
+    b.addEventListener('click',function(){
+      currentCat=cat;openCards[cat]=true;renderCards();translateTree($('categories'));
+      var card=$('catGrid').querySelector('[data-cat="'+cat.replace(/"/g,'\\"')+'"]');
+      if(card){card.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});card.classList.add('flash');setTimeout(function(){card.classList.remove('flash');},1600);var h=card.querySelector('.cat-head');if(h)h.focus({preventScroll:true});}
+    });
+    li.appendChild(b);ul.appendChild(li);
+  });
+}
 function renderCards(){
+  renderSide();
   var g=$('catGrid');g.textContent='';
-  S.home.cards.forEach(function(c,ix){
-    var links=cardLinks(c),n=links.length,open=!!openCards[ix];
-    var box=el('div','card cat-card'+(open?' open':''));
-    var b=el('button','cat-head');b.type='button';b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-controls','cl-'+ix);
-    var i=el('img');i.src=c.img;i.alt='';i.loading='lazy';
-    b.appendChild(i);var row=el('span','label-row');row.appendChild(el('span','label',c.label));row.appendChild(el('span','chev','▾'));b.appendChild(row);
-    b.appendChild(el('span','count',S.loaded?(n+' catalog'+(n===1?'':'s')):' '));
-    b.addEventListener('click',function(){openCards[ix]=!openCards[ix];renderCards();var nb=$('catGrid').querySelectorAll('.cat-head')[ix];if(nb)nb.focus();});
+  if(!S.loaded){g.appendChild(el('div','loading','Loading catalogs…'));return;}
+  categoryList().forEach(function(cat,ix){
+    var c={label:cat,cats:[cat]};
+    var links=cardLinks(c),n=links.length,open=!!openCards[cat],id='cl-'+ix;
+    var box=el('div','card cat-card'+(open?' open':''));box.setAttribute('data-cat',cat);
+    var b=el('button','cat-head');b.type='button';b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-controls',id);
+    b.appendChild(catPicture(cat,ix));
+    var row=el('span','label-row');row.appendChild(el('span','label',cat));row.appendChild(el('span','chev','▾'));b.appendChild(row);
+    b.appendChild(el('span','count',nCat(n)));
+    b.addEventListener('click',function(){openCards[cat]=!openCards[cat];renderCards();translateTree($('catGrid'));var nb=$('catGrid').querySelectorAll('.cat-head')[ix];if(nb)nb.focus();});
     box.appendChild(b);
-    var ul=el('ul','cat-links');ul.id='cl-'+ix;ul.hidden=!open;
+    var ul=el('ul','cat-links');ul.id=id;ul.hidden=!open;
     links.forEach(function(l){var u=safeUrl(l.url);var li=el('li');var a=el(u?'a':'span','',l.name);if(u){a.href=u;a.target='_blank';a.rel='noopener';a.appendChild(el('span','go',' ↗'));trackVisit(a,u);}li.appendChild(a);ul.appendChild(li);});
-    if(!links.length)ul.appendChild(el('li','none',S.loaded?'No catalogs yet.':'Loading…'));
+    if(!links.length)ul.appendChild(el('li','none','No catalogs yet.'));
     box.appendChild(ul);g.appendChild(box);
   });
 }
@@ -552,24 +703,24 @@ function renderFeatured(){
 }
 var allDlg=$('allDlg');
 function groups(){var m={};visibleLinks().forEach(function(l){var g=m[l.category]=m[l.category]||{};var k=l.url+'|'+l.name;if(!g[k])g[k]={name:l.name,url:l.url};});
-  return Object.keys(m).sort().map(function(c){var arr=Object.keys(m[c]).map(function(k){return m[c][k];});arr.sort(function(a,b){return a.name.localeCompare(b.name);});return {cat:c,links:arr};});}
+  return Object.keys(m).sort(function(a,b){return t(a).localeCompare(t(b),LANG);}).map(function(c){var arr=Object.keys(m[c]).map(function(k){return m[c][k];});arr.sort(function(a,b){return a.name.localeCompare(b.name);});return {cat:c,links:arr};});}
 function slug(c){return 'ac-'+c.toLowerCase().replace(/[^a-z0-9]+/g,'-');}
 function renderAll(){
   var body=$('allBody'),jump=$('allJump');body.textContent='';jump.textContent='';
   if(!S.loaded){body.appendChild(el('p','loading',S.loadError?'The catalog list could not be loaded. Please refresh the page or contact us.':'Loading catalogs…'));$('allSub').textContent='';return;}
   var q=$('allQ').value.trim().toLowerCase(),total=0,cats=0;
   groups().forEach(function(g){
-    var hitCat=!q||g.cat.toLowerCase().indexOf(q)>-1;
+    var hitCat=!q||g.cat.toLowerCase().indexOf(q)>-1||t(g.cat).toLowerCase().indexOf(q)>-1;
     var links=hitCat?g.links:g.links.filter(function(l){return l.name.toLowerCase().indexOf(q)>-1;});
     if(!links.length)return;total+=links.length;cats++;
     var sec=el('section','cat-group');sec.id=slug(g.cat);
-    var h=el('h3','',g.cat);h.appendChild(el('span','',links.length+' catalog'+(links.length===1?'':'s')));sec.appendChild(h);
+    var h=el('h3','',g.cat);h.appendChild(el('span','',nCat(links.length)));sec.appendChild(h);
     var ul=el('ul');links.forEach(function(l){var u=safeUrl(l.url);var li=el('li');var a=el(u?'a':'span','',l.name);if(u){a.href=u;a.target='_blank';a.rel='noopener';a.appendChild(el('span','','↗'));trackVisit(a,u);}li.appendChild(a);ul.appendChild(li);});
     sec.appendChild(ul);body.appendChild(sec);
     var jb=el('button','chip',g.cat);jb.type='button';jb.addEventListener('click',function(){var t=$(slug(g.cat));if(t)body.scrollTop=t.offsetTop-body.offsetTop-8;});jump.appendChild(jb);
   });
-  if(!cats)body.appendChild(el('p','empty','Nothing matches “'+$('allQ').value.trim()+'”. Try another word, or contact us and we’ll find it for you.'));
-  $('allSub').textContent=cats+' categor'+(cats===1?'y':'ies')+' · '+uniqUrls(visibleLinks().filter(function(l){return !q||true;}))+' catalogs in total'+(q?' · '+total+' matching':'');
+  if(!cats)body.appendChild(el('p','empty',LANG==='nl'?('Niets gevonden voor “'+$('allQ').value.trim()+'”. Probeer een ander woord, of neem contact op en wij zoeken het voor u uit.'):('Nothing matches “'+$('allQ').value.trim()+'”. Try another word, or contact us and we’ll find it for you.')));
+  var totalCat=uniqUrls(visibleLinks());$('allSub').textContent=LANG==='nl'?(cats+(cats===1?' categorie':' categorieën')+' · '+totalCat+' catalogi in totaal'+(q?' · '+total+' gevonden':'')):(cats+' categor'+(cats===1?'y':'ies')+' · '+totalCat+' catalogs in total'+(q?' · '+total+' matching':''));translateTree(body);translateTree(jump);
 }
 function openAll(query){$('allQ').value=query||'';renderAll();if(allDlg.showModal){if(!allDlg.open)allDlg.showModal();}else allDlg.setAttribute('open','');$('allBody').scrollTop=0;}
 document.querySelectorAll('[data-open-all]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();openAll('');});});
@@ -581,6 +732,7 @@ function renderPublic(){
   applyInfo();renderCards();renderFeatured();if(allDlg.open)renderAll();
   var vis=visibleLinks();var n=uniqUrls(vis);$('catalogCount').textContent=S.loaded&&n?(n+'+'):'our';
   var sel=$('f-cat'),cur=sel.value;sel.length=1;uniq(vis.map(function(l){return l.category;})).sort().forEach(function(c){var o=el('option','',c);o.value=c;sel.appendChild(o);});sel.value=cur;
+  applyLang();
 }
 
 /* search */
@@ -589,26 +741,26 @@ $('searchForm').addEventListener('submit',function(e){e.preventDefault();openAll
 
 /* menu */
 var mb=$('menuBtn'),nav=$('mainNav');
-mb.addEventListener('click',function(){var o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.setAttribute('aria-label',o?'Close menu':'Open menu');});
+mb.addEventListener('click',function(){var o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.setAttribute('data-en-aria-label',o?'Close menu':'Open menu');mb.setAttribute('aria-label',t(o?'Close menu':'Open menu'));});
 nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');mb.setAttribute('aria-expanded','false');}});
 
 /* copy + contact form */
 function copyText(t,btn,target){
-  var old=btn.textContent;var done=function(){btn.textContent='Copied';setTimeout(function(){btn.textContent=old;},1500);};
-  var fb=function(){if(!target)return;var r=document.createRange();r.selectNodeContents(target);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected — press Ctrl+C';};
+  var old=btn.textContent;var done=function(){btn.textContent=t('Copied');setTimeout(function(){btn.textContent=old;},1500);};
+  var fb=function(){if(!target)return;var r=document.createRange();r.selectNodeContents(target);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent=t('Selected — press Ctrl+C');};
   try{navigator.clipboard.writeText(t).then(done,fb);}catch(e){fb();}
 }
 document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var t=$(b.dataset.copy);copyText(t.textContent,b,t);});});
 $('inquiry').addEventListener('submit',function(e){
   e.preventDefault();var out=$('formOut');
   var co=$('f-company'),em=$('f-email');
-  if(!co.value.trim()){out.hidden=false;out.textContent='Please add your company name.';co.focus();return;}
-  if(!/^\S+@\S+\.\S+$/.test(em.value.trim())){out.hidden=false;out.textContent='Please enter a valid email address, for example buyer@company.eu.';em.focus();return;}
+  if(!co.value.trim()){out.hidden=false;out.textContent=t('Please add your company name.');co.focus();return;}
+  if(!/^\S+@\S+\.\S+$/.test(em.value.trim())){out.hidden=false;out.textContent=t('Please enter a valid email address, for example buyer@company.eu.');em.focus();return;}
   var txt='Company: '+co.value.trim()+'\nEmail: '+em.value.trim()+'\nCountry: '+($('f-country').value.trim()||'-')+'\nCategory: '+($('f-cat').value||'Any')+'\n\n'+($('f-msg').value.trim()||'Please send your catalogs.');
   out.hidden=false;out.textContent='';
-  out.appendChild(el('p','','Your request is ready. Copy it and email it to '+(S.info.email||'us')+'.'));
+  out.appendChild(el('p','',LANG==='nl'?('Uw aanvraag staat klaar. Kopieer hem en mail hem naar '+(S.info.email||'ons')+'.'):('Your request is ready. Copy it and email it to '+(S.info.email||'us')+'.')));
   var pre=el('pre','',txt);pre.style.cssText='white-space:pre-wrap;font:inherit;margin:8px 0;background:var(--white);border:1px solid var(--line);border-radius:6px;padding:10px';
-  var b=el('button','copy','Copy request');b.type='button';out.appendChild(pre);out.appendChild(b);
+  var b=el('button','copy',t('Copy request'));b.type='button';out.appendChild(pre);out.appendChild(b);
   b.addEventListener('click',function(){copyText(txt,b,pre);});
 });
 
