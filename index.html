@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>ToyzaWorld</title>
+<script>/* contact page = same file, shown in "contact" mode */if(/\/contact(\.html)?\/?$/i.test(location.pathname))document.documentElement.classList.add('page-contact');</script>
 <meta name="description" content="Browse toy catalogs from selected manufacturers, organized for European B2B buyers. Request EXW pricing, MOQ, lead times and compliance documents.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -153,6 +154,14 @@ html[lang="nl"] .cat-links a.visited::after,html[lang="nl"] .cat-group a.visited
 .cat-head img{height:auto;aspect-ratio:3/2;max-width:100%}
 /* Category picture placeholder (until a photo is uploaded) */
 .cat-head .ph{width:100%;aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;font-size:46px;font-weight:800;color:var(--navy);letter-spacing:-1px}
+/* Separate contact page */
+html:not(.page-contact) #contact{display:none!important}
+.page-contact #top,.page-contact #categories,.page-contact #why,.page-contact #how,.page-contact .cta{display:none!important}
+.page-contact .contact{padding-block:40px 64px;min-height:60vh}
+.back-home{display:none;font-weight:600;font-size:15px;color:var(--link);text-decoration:none;margin-bottom:18px}
+.back-home:hover{text-decoration:underline}
+.page-contact .back-home{display:inline-flex}
+.main-nav a[aria-current="page"]{color:var(--link);text-decoration:underline;text-underline-offset:6px}
 /* Contact form */
 .fs{border:0;margin:0;padding:0;display:grid;gap:16px;min-width:0}
 .fs legend{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);padding:0;margin-bottom:12px}
@@ -272,7 +281,7 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
 <div class="welcome" id="welcome" hidden><div class="wrap"><span id="welcomeText"></span><button type="button" id="welcomeClose">Dismiss</button></div></div>
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="logo" href="#top" aria-label="ToyzaWorld home">
+    <a class="logo" href="/" aria-label="ToyzaWorld home">
       <span class="logo-word">Toyza<span class="w1">W</span><span class="w2">o</span><span class="w3">r</span><span class="w4">l</span><span class="w5">d</span></span>
       <span class="logo-tag">Global Toys • European Markets</span>
     </a>
@@ -280,11 +289,11 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
       <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
     <nav class="main-nav" id="mainNav" aria-label="Main">
-      <a href="#top">Home</a>
+      <a href="/">Home</a>
       <a href="#all-categories" data-open-all>Catalog</a>
-      <a href="#why">About</a>
-      <a href="#how">How It Works</a>
-      <a href="#contact">Contact</a>
+      <a href="/#why">About</a>
+      <a href="/#how">How It Works</a>
+      <a href="/contact">Contact</a>
     </nav>
     <div class="header-tools">
       <form class="search" role="search" id="searchForm">
@@ -296,7 +305,7 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
         <button type="button" data-lang="nl" aria-pressed="false" lang="nl" title="Nederlands"><svg class="flag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="6" fill="#21468B"/><rect width="9" height="4" fill="#FFFFFF"/><rect width="9" height="2" fill="#AE1C28"/></svg><span class="lang-code">NL</span></button>
         <button type="button" data-lang="en" aria-pressed="true" lang="en" title="English"><svg class="flag" viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukS"><path d="M0,0v30h60V0z"/></clipPath><clipPath id="ukT"><path d="M30,15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#ukS)"><path d="M0,0v30h60V0z" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#FFFFFF" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#ukT)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#FFFFFF" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></g></svg><span class="lang-code">EN</span></button>
       </div>
-      <a class="btn btn-primary header-contact" href="#contact" style="min-height:44px;padding:0 20px;font-size:15px;white-space:nowrap">Contact Us</a>
+      <a class="btn btn-primary header-contact" href="/contact" style="min-height:44px;padding:0 20px;font-size:15px;white-space:nowrap">Contact Us</a>
     </div>
   </div>
 </header>
@@ -308,8 +317,8 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
       <h1><span data-bind="heroLine1">The World’s Toys,</span><br><span data-bind="heroLine2">Delivered to Europe</span></h1>
       <p data-bind="heroDesc">Discover toy collections from selected manufacturers, organized for European buyers. Browse by category, explore product catalogs, and contact us for pricing, MOQ, lead times, and available compliance documentation.</p>
       <div class="btn-row">
-        <a class="btn btn-primary" href="#categories">Explore Catalogs <span aria-hidden="true">→</span></a>
-        <a class="btn btn-ghost" href="#contact">Contact ToyzaWorld</a>
+        <a class="btn btn-primary" href="/#categories">Explore Catalogs <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="/contact">Contact ToyzaWorld</a>
       </div>
       <div class="perks">
         <div class="perk">
@@ -397,13 +406,14 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
     <div class="cta-copy">
       <h2 id="ctaTitle">Let’s Bring More Joy to Europe</h2>
       <p>Explore our catalogs and find the next bestsellers for your market.</p>
-      <a class="btn btn-primary" href="#contact" style="margin-top:8px">Contact ToyzaWorld <span aria-hidden="true">→</span></a>
+      <a class="btn btn-primary" href="/contact" style="margin-top:8px">Contact ToyzaWorld <span aria-hidden="true">→</span></a>
     </div>
     <p class="hand" aria-hidden="true">Good Toys<br>Brighter<br>Futures <span>♡</span></p>
   </div>
 </section>
 
 <section class="contact wrap" id="contact" aria-labelledby="contactTitle">
+  <a class="back-home" href="/">← Back to home</a>
   <div class="contact-grid">
     <div class="contact-info">
       <h2 id="contactTitle" data-bind="contactTitle" style="margin:0;font-size:clamp(26px,3vw,32px);font-weight:800;letter-spacing:-.5px">Request a Catalog</h2>
@@ -464,12 +474,12 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
 
 <footer>
   <div class="wrap foot-row">
-    <a class="logo" href="#top" aria-label="ToyzaWorld home">
+    <a class="logo" href="/" aria-label="ToyzaWorld home">
       <span class="logo-word">Toyza<span class="w1">W</span><span class="w2">o</span><span class="w3">r</span><span class="w4">l</span><span class="w5">d</span></span>
       <span class="logo-tag">Global Toys • European Markets</span>
     </a>
     <nav class="foot-nav" aria-label="Footer">
-      <a href="#top">Home</a><a href="#all-categories" data-open-all>Catalog</a><a href="#why">About</a><a href="#how">How It Works</a><a href="#contact">Contact</a><a href="dashboard.html">Dashboard</a>
+      <a href="/">Home</a><a href="#all-categories" data-open-all>Catalog</a><a href="/#why">About</a><a href="/#how">How It Works</a><a href="/contact">Contact</a><a href="dashboard.html">Dashboard</a>
     </nav>
     <div class="social">
       <a href="https://www.linkedin.com/" aria-label="LinkedIn"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2.5 2.5 0 015 0v4M12 10v7"/></svg></a>
@@ -547,7 +557,7 @@ var NL={
 "Dismiss":"Sluiten","Global Toys • European Markets":"Wereldwijd speelgoed • Europese markten","Open menu":"Menu openen","Close menu":"Menu sluiten","Main":"Hoofdmenu",
 "Home":"Home","Catalog":"Catalogus","About":"Over ons","How It Works":"Hoe het werkt","Contact":"Contact",
 "Search categories":"Zoek categorieën","Search categories...":"Zoek categorie...",
-"Contact Us":"Neem contact op","The World’s Toys,":"Speelgoed uit de hele wereld,","The World's Toys,":"Speelgoed uit de hele wereld,","Delivered to Europe":"geleverd in Europa",
+"Contact Us":"Neem contact op","← Back to home":"← Terug naar home","The World’s Toys,":"Speelgoed uit de hele wereld,","The World's Toys,":"Speelgoed uit de hele wereld,","Delivered to Europe":"geleverd in Europa",
 "Discover toy collections from selected manufacturers, organized for European buyers. Browse by category, explore product catalogs, and contact us for pricing, MOQ, lead times, and available compliance documentation.":"Ontdek speelgoedcollecties van geselecteerde fabrikanten, overzichtelijk voor Europese inkopers. Blader per categorie, bekijk productcatalogi en neem contact met ons op voor prijzen, MOQ, levertijden en beschikbare conformiteitsdocumentatie.",
 "Toyza World connects European retailers with the best toy manufacturers across 40+ countries. Explore our global network through an interactive catalog.":"Toyza World verbindt Europese retailers met de beste speelgoedfabrikanten in meer dan 40 landen. Verken ons wereldwijde netwerk via een interactieve catalogus.",
 "Welcome to Toyza World.":"Welkom bij Toyza World.",
@@ -659,7 +669,9 @@ function applyInfo(){
   var w=(I.welcome||'').trim();
   $('welcomeText').textContent=w;
   $('welcome').hidden=!w||load('tw-welcome-dismissed')===w;
-  document.title=S.seo.title||'ToyzaWorld';
+  var isContact=document.documentElement.classList.contains('page-contact');
+  document.title=(isContact?(LANG==='nl'?'Contact – ':'Contact – '):'')+(S.seo.title||'ToyzaWorld');
+  document.querySelectorAll('#mainNav a').forEach(function(a){if(isContact&&a.getAttribute('href')==='/contact')a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   setMeta('description',S.seo.description);setMeta('keywords',S.seo.keywords);
 }
 function setMeta(name,val){var m=document.querySelector('meta[name="'+name+'"]');if(!m){m=document.createElement('meta');m.name=name;document.head.appendChild(m);}m.content=val||'';}
