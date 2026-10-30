@@ -596,8 +596,14 @@ var LANG=(function(){var v=load('tw-lang');if(v==='nl'||v==='en')return v;return
 function t(en){return LANG==='nl'&&NL[en]?NL[en]:en;}
 /* Every catalogue (unique link) gets one fixed number, in dashboard order: 1, 2, 3 … */
 var CAT_NO={},CAT_NO_SRC=null;
+/* Numbers come from site.json "catalogueNumbers" (your Excel list). Catalogues not in that list get the next free number. */
 function catNo(url){
-  if(CAT_NO_SRC!==S.links){CAT_NO={};var n=0;S.links.forEach(function(l){if(!(l.url in CAT_NO))CAT_NO[l.url]=++n;});CAT_NO_SRC=S.links;}
+  if(CAT_NO_SRC!==S.links){
+    CAT_NO={};var fixed=S.catNums||{},max=0;
+    Object.keys(fixed).forEach(function(u){CAT_NO[u]=fixed[u];if(fixed[u]>max)max=fixed[u];});
+    S.links.forEach(function(l){if(!(l.url in CAT_NO))CAT_NO[l.url]=++max;});
+    CAT_NO_SRC=S.links;
+  }
   return CAT_NO[url]||0;
 }
 function catLabel(url){return (LANG==='nl'?'Catalogus ':'Catalogue ')+catNo(url);}
@@ -877,6 +883,7 @@ async function init(){
     if(cfg.info)S.info=Object.assign(clone(DEFAULT_INFO),cfg.info);
     if(cfg.seo)S.seo=Object.assign(clone(DEFAULT_SEO),cfg.seo);
     if(typeof cfg.formKey==='string')S.formKey=cfg.formKey.trim();
+    if(cfg.catalogueNumbers&&typeof cfg.catalogueNumbers==='object')S.catNums=cfg.catalogueNumbers;
     if(cfg.home){S.home={cards:(cfg.home.cards&&cfg.home.cards.length)?cfg.home.cards:clone(DEFAULT_CARDS),featured:cfg.home.featured&&cfg.home.featured.length?cfg.home.featured:null};}
   }catch(e){}
   // 2. texts + contact details from the dashboard (siteConfig/siteInfo)
