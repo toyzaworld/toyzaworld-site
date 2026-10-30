@@ -153,16 +153,24 @@ html[lang="nl"] .cat-links a.visited::after,html[lang="nl"] .cat-group a.visited
 .cat-head img{height:auto;aspect-ratio:3/2;max-width:100%}
 /* Category picture placeholder (until a photo is uploaded) */
 .cat-head .ph{width:100%;aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;font-size:46px;font-weight:800;color:var(--navy);letter-spacing:-1px}
+/* Contact form */
+.fs{border:0;margin:0;padding:0;display:grid;gap:16px;min-width:0}
+.fs legend{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);padding:0;margin-bottom:12px}
+.req{color:var(--red);margin-left:2px}
+.field [aria-invalid="true"]{border-color:var(--red);background:#FFF6F5}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:500;line-height:1.45}
+.consent input{width:20px;height:20px;margin-top:1px;flex:0 0 auto}
+.success.error{background:#FDECEA;color:#8A1F17}
 /* Category sidebar */
 .cat-layout{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
 .cat-layout>.grid-cat{flex:999 1 560px;min-width:0}
-.cat-side{flex:1 1 240px;max-width:280px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 90px);border:1px solid var(--line);border-radius:10px;background:var(--white);padding:14px 8px 10px;max-height:calc(100vh - 110px);overflow:auto}
+.cat-side{flex:1 1 260px;max-width:300px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 90px);border:1px solid var(--line);border-radius:10px;background:var(--white);padding:14px 8px 10px;max-height:calc(100vh - 110px);overflow:auto}
 .cat-side h3{margin:0 10px 8px;font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
 .cat-side ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.cat-side button{width:100%;display:flex;justify-content:space-between;gap:10px;align-items:baseline;text-align:left;font:inherit;font-size:14px;font-weight:600;color:var(--navy);background:transparent;border:0;border-radius:6px;padding:9px 10px;cursor:pointer;min-height:40px}
+.cat-side button{width:100%;display:block;line-height:1.35;text-align:left;font:inherit;font-size:14px;font-weight:600;color:var(--navy);background:transparent;border:0;border-radius:6px;padding:9px 10px;cursor:pointer;min-height:40px}
 .cat-side button:hover{background:var(--sky)}
 .cat-side button[aria-current="true"]{background:var(--navy);color:var(--white)}
-.cat-side .n{font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.cat-side .n{font-weight:500;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;margin-left:6px}
 .cat-side button[aria-current="true"] .n{color:#C9D6E4}
 .cat-card.flash{box-shadow:0 0 0 3px var(--blue),var(--shadow-hover)}
 @media (max-width:900px){
@@ -280,8 +288,8 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
     </nav>
     <div class="header-tools">
       <form class="search" role="search" id="searchForm">
-        <label for="q" class="sr-only">Search toys, categories, suppliers</label>
-        <input id="q" type="search" placeholder="Search toys, categories, suppliers..." autocomplete="off">
+        <label for="q" class="sr-only">Search categories</label>
+        <input id="q" type="search" placeholder="Search categories..." autocomplete="off">
         <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       </form>
       <div class="lang" role="group" aria-label="Language / Taal">
@@ -335,14 +343,6 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
     </nav>
     <div class="grid grid-cat" id="catGrid"></div>
   </div>
-</section>
-
-<section class="block wrap" id="featured" aria-labelledby="katTitle">
-  <div class="sec-head">
-    <h2 id="katTitle">Featured Catalogs</h2>
-    <button type="button" class="more" data-open-all>View All Catalogs →</button>
-  </div>
-  <div class="grid grid-cat2" id="katGrid"></div>
 </section>
 
 <section class="block wrap" id="why" aria-labelledby="whyTitle">
@@ -418,20 +418,45 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
       <p class="legal-note" data-bind="legalNote"></p>
     </div>
     <form class="inquiry" id="inquiry" novalidate>
+      <fieldset class="fs"><legend>Your details</legend>
       <div class="two">
-        <div class="field"><label for="f-company">Company name</label><input id="f-company" required autocomplete="organization"></div>
-        <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="f-name">Full name <span class="req" aria-hidden="true">*</span></label><input id="f-name" required autocomplete="name"></div>
+        <div class="field"><label for="f-job">Job title</label><input id="f-job" autocomplete="organization-title"></div>
       </div>
       <div class="two">
-        <div class="field"><label for="f-country">Country</label><input id="f-country" autocomplete="country-name"></div>
-        <div class="field"><label for="f-cat">Category</label>
-          <select id="f-cat"><option value="">Any category</option></select>
-        </div>
+        <div class="field"><label for="f-company">Company name <span class="req" aria-hidden="true">*</span></label><input id="f-company" required autocomplete="organization"></div>
+        <div class="field"><label for="f-btype">Type of business</label>
+          <select id="f-btype"><option value="">Select…</option><option value="Retailer / toy shop">Retailer / toy shop</option><option value="Chain store">Chain store</option><option value="Online shop">Online shop</option><option value="Wholesaler / distributor">Wholesaler / distributor</option><option value="Importer">Importer</option><option value="Other">Other</option></select></div>
       </div>
-      <div class="field"><label for="f-msg">What are you looking for?</label><textarea id="f-msg" placeholder="Target products, quantities, price range, certificates needed (EN71, CE…)"></textarea></div>
-      <button class="btn btn-primary" type="submit" style="justify-self:start">Prepare Request</button>
-      <p class="note">This page doesn’t send messages yet. Submitting prepares your request so you can copy it into an email.</p>
-      <div class="success" id="formOut" hidden></div>
+      <div class="two">
+        <div class="field"><label for="f-email">Business email <span class="req" aria-hidden="true">*</span></label><input id="f-email" type="email" required autocomplete="email" inputmode="email"></div>
+        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" type="tel" autocomplete="tel" placeholder="+31 6 1234 5678"></div>
+      </div>
+      <div class="two">
+        <div class="field"><label for="f-country">Country <span class="req" aria-hidden="true">*</span></label><input id="f-country" required autocomplete="country-name" list="countryList"></div>
+        <div class="field"><label for="f-web">Website</label><input id="f-web" type="url" autocomplete="url" placeholder="https://"></div>
+      </div>
+      <datalist id="countryList"><option value="Netherlands"></option><option value="Belgium"></option><option value="Germany"></option><option value="France"></option><option value="Luxembourg"></option><option value="Austria"></option><option value="Spain"></option><option value="Italy"></option><option value="Poland"></option><option value="Denmark"></option><option value="Sweden"></option><option value="Ireland"></option><option value="United Kingdom"></option><option value="Switzerland"></option></datalist>
+      </fieldset>
+      <fieldset class="fs"><legend>Your request</legend>
+      <div class="two">
+        <div class="field"><label for="f-type">Type of request <span class="req" aria-hidden="true">*</span></label>
+          <select id="f-type" required><option value="Catalogue request">Catalogue request</option><option value="Price &amp; MOQ quotation">Price &amp; MOQ quotation</option><option value="Compliance documents (EN71, CE)">Compliance documents (EN71, CE)</option><option value="Samples">Samples</option><option value="General question">General question</option><option value="Partnership / supplier proposal">Partnership / supplier proposal</option></select></div>
+        <div class="field"><label for="f-cat">Category of interest</label>
+          <select id="f-cat"><option value="">Any category</option></select></div>
+      </div>
+      <div class="two">
+        <div class="field"><label for="f-volume">Expected order volume</label>
+          <select id="f-volume"><option value="">Select…</option><option value="Trial order">Trial order</option><option value="Under €5,000">Under €5,000</option><option value="€5,000 – €20,000">€5,000 – €20,000</option><option value="€20,000 – €50,000">€20,000 – €50,000</option><option value="Over €50,000">Over €50,000</option></select></div>
+        <div class="field"><label for="f-subject">Subject</label><input id="f-subject"></div>
+      </div>
+      <div class="field"><label for="f-msg">Message <span class="req" aria-hidden="true">*</span></label><textarea id="f-msg" required placeholder="Target products, quantities, price range, certificates needed (EN71, CE…)"></textarea></div>
+      </fieldset>
+      <label class="check consent"><input type="checkbox" id="f-consent" required><span>I agree that ToyzaWorld stores my details to answer this request. <span class="req" aria-hidden="true">*</span></span></label>
+      <input type="checkbox" name="botcheck" id="f-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+      <button class="btn btn-primary" type="submit" id="f-send" style="justify-self:start">Send Request</button>
+      <p class="note"><span id="formNote">Your request goes straight to our sourcing team by email.</span> <span>Fields marked * are required.</span></p>
+      <div class="success" id="formOut" hidden aria-live="polite"></div>
     </form>
   </div>
 </section>
@@ -466,7 +491,7 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
   </div>
   <div class="dlg-tools">
     <label for="allQ" class="sr-only">Search catalogs</label>
-    <input id="allQ" type="search" placeholder="Search catalogs or categories…" autocomplete="off">
+    <input id="allQ" type="search" placeholder="Search categories…" autocomplete="off">
     <div class="chips" id="allJump" aria-label="Jump to category"></div>
   </div>
   <div class="dlg-body" id="allBody"></div>
@@ -521,7 +546,7 @@ function load(k){try{return localStorage.getItem(k);}catch(e){return null;}}
 var NL={
 "Dismiss":"Sluiten","Global Toys • European Markets":"Wereldwijd speelgoed • Europese markten","Open menu":"Menu openen","Close menu":"Menu sluiten","Main":"Hoofdmenu",
 "Home":"Home","Catalog":"Catalogus","About":"Over ons","How It Works":"Hoe het werkt","Contact":"Contact",
-"Search toys, categories, suppliers":"Zoek speelgoed, categorieën, leveranciers","Search toys, categories, suppliers...":"Zoek speelgoed...",
+"Search categories":"Zoek categorieën","Search categories...":"Zoek categorie...",
 "Contact Us":"Neem contact op","The World’s Toys,":"Speelgoed uit de hele wereld,","The World's Toys,":"Speelgoed uit de hele wereld,","Delivered to Europe":"geleverd in Europa",
 "Discover toy collections from selected manufacturers, organized for European buyers. Browse by category, explore product catalogs, and contact us for pricing, MOQ, lead times, and available compliance documentation.":"Ontdek speelgoedcollecties van geselecteerde fabrikanten, overzichtelijk voor Europese inkopers. Blader per categorie, bekijk productcatalogi en neem contact met ons op voor prijzen, MOQ, levertijden en beschikbare conformiteitsdocumentatie.",
 "Toyza World connects European retailers with the best toy manufacturers across 40+ countries. Explore our global network through an interactive catalog.":"Toyza World verbindt Europese retailers met de beste speelgoedfabrikanten in meer dan 40 landen. Verken ons wereldwijde netwerk via een interactieve catalogus.",
@@ -544,11 +569,17 @@ var NL={
 "Tell us which categories you are buying for. We reply with catalogs, EXW pricing, MOQ, lead times and the compliance documents available for your market.":"Laat ons weten voor welke categorieën u inkoopt. Wij sturen u catalogi, EXW-prijzen, MOQ, levertijden en de beschikbare conformiteitsdocumenten voor uw markt.",
 "Email":"E-mail","Copy":"Kopiëren","Phone":"Telefoon","Company":"Bedrijf","Address":"Adres","Company name":"Bedrijfsnaam","Country":"Land","Category":"Categorie","Any category":"Alle categorieën",
 "What are you looking for?":"Waar bent u naar op zoek?","Target products, quantities, price range, certificates needed (EN71, CE…)":"Gewenste producten, aantallen, prijsklasse, benodigde certificaten (EN71, CE…)",
-"Prepare Request":"Aanvraag opstellen","This page doesn’t send messages yet. Submitting prepares your request so you can copy it into an email.":"Deze pagina verstuurt nog geen berichten. Na het verzenden staat uw aanvraag klaar om in een e-mail te kopiëren.",
+"Prepare Request":"Aanvraag opstellen","Your details":"Uw gegevens","Your request":"Uw aanvraag","Full name":"Volledige naam","Job title":"Functie","Type of business":"Type bedrijf","Select…":"Kies…",
+"Retailer / toy shop":"Retailer / speelgoedwinkel","Chain store":"Winkelketen","Online shop":"Webshop","Wholesaler / distributor":"Groothandel / distributeur","Importer":"Importeur","Other":"Anders",
+"Business email":"Zakelijk e-mailadres","Website":"Website","Type of request":"Soort aanvraag","Catalogue request":"Catalogusaanvraag","Price & MOQ quotation":"Prijs- & MOQ-offerte","Compliance documents (EN71, CE)":"Conformiteitsdocumenten (EN71, CE)",
+"Samples":"Monsters","General question":"Algemene vraag","Partnership / supplier proposal":"Samenwerking / leveranciersvoorstel","Category of interest":"Gewenste categorie","Expected order volume":"Verwachte ordergrootte",
+"Trial order":"Proefbestelling","Under €5,000":"Onder € 5.000","€5,000 – €20,000":"€ 5.000 – € 20.000","€20,000 – €50,000":"€ 20.000 – € 50.000","Over €50,000":"Boven € 50.000","Subject":"Onderwerp","Message":"Bericht",
+"I agree that ToyzaWorld stores my details to answer this request.":"Ik ga ermee akkoord dat ToyzaWorld mijn gegevens bewaart om deze aanvraag te beantwoorden.","Fields marked * are required.":"Velden met * zijn verplicht.",
+"Please fill in your name.":"Vul uw naam in.","Please fill in your country.":"Vul uw land in.","Please write a short message.":"Schrijf een kort bericht.","Please tick the consent box to send your request.":"Vink het akkoordvakje aan om uw aanvraag te versturen.","Send Request":"Aanvraag versturen","Sending…":"Versturen…","Your request goes straight to our sourcing team by email.":"Uw aanvraag gaat per e-mail direct naar ons inkoopteam.","This page doesn’t send messages yet. Submitting prepares your request so you can copy it into an email.":"Deze pagina verstuurt nog geen berichten. Na het verzenden staat uw aanvraag klaar om in een e-mail te kopiëren.",
 "Footer":"Voettekst","Made for a More Playful Tomorrow":"Gemaakt voor een speelser morgen","Play Without Borders.":"Spelen zonder grenzen.","Play Without Borders":"Spelen zonder grenzen",
 "© 2026 Toyza World B.V. — Netherlands. All rights reserved.":"© 2026 Toyza World B.V. — Nederland. Alle rechten voorbehouden.",
 "© 2026 Toyza World — Zoetermeer, Netherlands. All rights reserved.":"© 2026 Toyza World — Zoetermeer, Nederland. Alle rechten voorbehouden.",
-"Close":"Sluiten","Search catalogs":"Catalogi zoeken","Search catalogs or categories…":"Zoek catalogi of categorieën…","Jump to category":"Ga naar categorie",
+"Close":"Sluiten","Search catalogs":"Catalogi zoeken","Search categories…":"Zoek categorieën…","Jump to category":"Ga naar categorie",
 "No catalogs yet.":"Nog geen catalogi.","Loading…":"Laden…","Loading catalogs…":"Catalogi laden…","No featured catalogs yet.":"Nog geen uitgelichte catalogi.","View Catalog →":"Bekijk catalogus →",
 "The catalog list could not be loaded. Please refresh the page or contact us.":"De cataloguslijst kon niet worden geladen. Vernieuw de pagina of neem contact met ons op.",
 "Copied":"Gekopieerd","Selected — press Ctrl+C":"Geselecteerd — druk op Ctrl+C","Please add your company name.":"Vul uw bedrijfsnaam in.",
@@ -563,7 +594,14 @@ var NL={
 };
 var LANG=(function(){var v=load('tw-lang');if(v==='nl'||v==='en')return v;return /^nl/i.test(navigator.language||'')?'nl':'en';})();
 function t(en){return LANG==='nl'&&NL[en]?NL[en]:en;}
-function nCat(n){return LANG==='nl'?(n+(n===1?' catalogus':' catalogi')):(n+(n===1?' catalog':' catalogs'));}
+/* Every catalogue (unique link) gets one fixed number, in dashboard order: 1, 2, 3 … */
+var CAT_NO={},CAT_NO_SRC=null;
+function catNo(url){
+  if(CAT_NO_SRC!==S.links){CAT_NO={};var n=0;S.links.forEach(function(l){if(!(l.url in CAT_NO))CAT_NO[l.url]=++n;});CAT_NO_SRC=S.links;}
+  return CAT_NO[url]||0;
+}
+function catLabel(url){return (LANG==='nl'?'Catalogus ':'Catalogue ')+catNo(url);}
+function nCat(n){return LANG==='nl'?(n+(n===1?' catalogus':' catalogi')):(n+(n===1?' catalogue':' catalogues'));}
 var I18N_ATTRS=['placeholder','aria-label','alt','title'];
 function translateTree(root){
   var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode&&n.parentNode.nodeName;return (p==='SCRIPT'||p==='STYLE'||p==='PRE')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
@@ -625,7 +663,7 @@ var openCards={};
 function cardLinks(c){
   var byUrl={},order=[];
   visibleLinks().forEach(function(l){if(c.cats.indexOf(l.category)<0)return;var k=l.url+'|'+l.name;if(!byUrl[k]){byUrl[k]={name:l.name,url:l.url};order.push(k);}});
-  order.sort(function(a,b){return byUrl[a].name.localeCompare(byUrl[b].name);});
+  order.sort(function(a,b){return catNo(byUrl[a].url)-catNo(byUrl[b].url);});
   return order.map(function(k){return byUrl[k];});
 }
 var VKEY='tw-visited';
@@ -644,17 +682,25 @@ function categoryList(){
   return Object.keys(m).sort(function(a,b){return t(a).localeCompare(t(b),LANG);});
 }
 var currentCat=null;
+function scrollToCard(card){
+  var hdr=document.querySelector('.site-header');var off=(hdr?hdr.offsetHeight:0)+12;
+  var top=card.getBoundingClientRect().top+window.pageYOffset-off;
+  window.scrollTo({top:Math.max(0,top),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+}
 function renderSide(){
   var ul=$('catSide');ul.textContent='';
   categoryList().forEach(function(cat){
     var n=cardLinks({cats:[cat]}).length;
     var li=el('li');var b=el('button');b.type='button';
-    b.appendChild(el('span','',cat));b.appendChild(el('span','n','('+n+')'));
+    b.appendChild(el('span','',cat));b.appendChild(el('span','n','('+nCat(n)+')'));
     if(currentCat===cat)b.setAttribute('aria-current','true');
     b.addEventListener('click',function(){
+      var wasOpen=!!openCards[cat];
+      openCards={};
+      if(wasOpen){currentCat=null;renderCards();translateTree($('categories'));return;}
       currentCat=cat;openCards[cat]=true;renderCards();translateTree($('categories'));
       var card=$('catGrid').querySelector('[data-cat="'+cat.replace(/"/g,'\\"')+'"]');
-      if(card){card.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});card.classList.add('flash');setTimeout(function(){card.classList.remove('flash');},1600);var h=card.querySelector('.cat-head');if(h)h.focus({preventScroll:true});}
+      if(card){scrollToCard(card);card.classList.add('flash');setTimeout(function(){card.classList.remove('flash');},1600);var h=card.querySelector('.cat-head');if(h)h.focus({preventScroll:true});}
     });
     li.appendChild(b);ul.appendChild(li);
   });
@@ -671,10 +717,10 @@ function renderCards(){
     b.appendChild(catPicture(cat,ix));
     var row=el('span','label-row');row.appendChild(el('span','label',cat));row.appendChild(el('span','chev','▾'));b.appendChild(row);
     b.appendChild(el('span','count',nCat(n)));
-    b.addEventListener('click',function(){openCards[cat]=!openCards[cat];renderCards();translateTree($('catGrid'));var nb=$('catGrid').querySelectorAll('.cat-head')[ix];if(nb)nb.focus();});
+    b.addEventListener('click',function(){var wasOpen=!!openCards[cat];openCards={};if(!wasOpen)openCards[cat]=true;currentCat=wasOpen?null:cat;renderCards();translateTree($('categories'));var nb=$('catGrid').querySelectorAll('.cat-head')[ix];if(nb){nb.focus({preventScroll:true});if(!wasOpen){var r=nb.closest('.cat-card').getBoundingClientRect();if(r.top<70||r.top>innerHeight-120)scrollToCard(nb.closest('.cat-card'));}}});
     box.appendChild(b);
     var ul=el('ul','cat-links');ul.id=id;ul.hidden=!open;
-    links.forEach(function(l){var u=safeUrl(l.url);var li=el('li');var a=el(u?'a':'span','',l.name);if(u){a.href=u;a.target='_blank';a.rel='noopener';a.appendChild(el('span','go',' ↗'));trackVisit(a,u);}li.appendChild(a);ul.appendChild(li);});
+    links.forEach(function(l){var u=safeUrl(l.url);var li=el('li');var a=el(u?'a':'span','',catLabel(l.url));if(u){a.href=u;a.target='_blank';a.rel='noopener';a.appendChild(el('span','go',' ↗'));trackVisit(a,u);}li.appendChild(a);ul.appendChild(li);});
     if(!links.length)ul.appendChild(el('li','none','No catalogs yet.'));
     box.appendChild(ul);g.appendChild(box);
   });
@@ -695,7 +741,7 @@ function renderFeatured(){
   list.forEach(function(k){
     var d=el('div','card');d.style.cursor='default';
     var i=el('img');i.src=k.img;i.alt='';i.loading='lazy';
-    var b=el('div','body');b.appendChild(el('b','',k.name));b.appendChild(el('small','',k.cat));
+    var b=el('div','body');b.appendChild(el('b','',k.cat));b.appendChild(el('small','',catLabel(k.url)));
     var u=safeUrl(k.url);
     if(u){var a=el('a','','View Catalog →');a.href=u;a.target='_blank';a.rel='noopener';trackVisit(a,u);b.appendChild(a);}
     d.appendChild(i);d.appendChild(b);g.appendChild(d);
@@ -703,7 +749,7 @@ function renderFeatured(){
 }
 var allDlg=$('allDlg');
 function groups(){var m={};visibleLinks().forEach(function(l){var g=m[l.category]=m[l.category]||{};var k=l.url+'|'+l.name;if(!g[k])g[k]={name:l.name,url:l.url};});
-  return Object.keys(m).sort(function(a,b){return t(a).localeCompare(t(b),LANG);}).map(function(c){var arr=Object.keys(m[c]).map(function(k){return m[c][k];});arr.sort(function(a,b){return a.name.localeCompare(b.name);});return {cat:c,links:arr};});}
+  return Object.keys(m).sort(function(a,b){return t(a).localeCompare(t(b),LANG);}).map(function(c){var arr=Object.keys(m[c]).map(function(k){return m[c][k];});arr.sort(function(a,b){return catNo(a.url)-catNo(b.url);});return {cat:c,links:arr};});}
 function slug(c){return 'ac-'+c.toLowerCase().replace(/[^a-z0-9]+/g,'-');}
 function renderAll(){
   var body=$('allBody'),jump=$('allJump');body.textContent='';jump.textContent='';
@@ -711,11 +757,11 @@ function renderAll(){
   var q=$('allQ').value.trim().toLowerCase(),total=0,cats=0;
   groups().forEach(function(g){
     var hitCat=!q||g.cat.toLowerCase().indexOf(q)>-1||t(g.cat).toLowerCase().indexOf(q)>-1;
-    var links=hitCat?g.links:g.links.filter(function(l){return l.name.toLowerCase().indexOf(q)>-1;});
+    var links=hitCat?g.links:[];
     if(!links.length)return;total+=links.length;cats++;
     var sec=el('section','cat-group');sec.id=slug(g.cat);
     var h=el('h3','',g.cat);h.appendChild(el('span','',nCat(links.length)));sec.appendChild(h);
-    var ul=el('ul');links.forEach(function(l){var u=safeUrl(l.url);var li=el('li');var a=el(u?'a':'span','',l.name);if(u){a.href=u;a.target='_blank';a.rel='noopener';a.appendChild(el('span','','↗'));trackVisit(a,u);}li.appendChild(a);ul.appendChild(li);});
+    var ul=el('ul');links.forEach(function(l){var u=safeUrl(l.url);var li=el('li');var a=el(u?'a':'span','',catLabel(l.url));if(u){a.href=u;a.target='_blank';a.rel='noopener';a.appendChild(el('span','','↗'));trackVisit(a,u);}li.appendChild(a);ul.appendChild(li);});
     sec.appendChild(ul);body.appendChild(sec);
     var jb=el('button','chip',g.cat);jb.type='button';jb.addEventListener('click',function(){var t=$(slug(g.cat));if(t)body.scrollTop=t.offsetTop-body.offsetTop-8;});jump.appendChild(jb);
   });
@@ -729,7 +775,7 @@ allDlg.addEventListener('click',function(e){if(e.target===allDlg)allDlg.close();
 $('allQ').addEventListener('input',renderAll);
 function uniqUrls(rows){return uniq(rows.map(function(l){return l.url+'|'+l.name;})).length;}
 function renderPublic(){
-  applyInfo();renderCards();renderFeatured();if(allDlg.open)renderAll();
+  applyInfo();renderCards();if(allDlg.open)renderAll();
   var vis=visibleLinks();var n=uniqUrls(vis);$('catalogCount').textContent=S.loaded&&n?(n+'+'):'our';
   var sel=$('f-cat'),cur=sel.value;sel.length=1;uniq(vis.map(function(l){return l.category;})).sort().forEach(function(c){var o=el('option','',c);o.value=c;sel.appendChild(o);});sel.value=cur;
   applyLang();
@@ -751,21 +797,55 @@ function copyText(t,btn,target){
   try{navigator.clipboard.writeText(t).then(done,fb);}catch(e){fb();}
 }
 document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var t=$(b.dataset.copy);copyText(t.textContent,b,t);});});
-$('inquiry').addEventListener('submit',function(e){
-  e.preventDefault();var out=$('formOut');
-  var co=$('f-company'),em=$('f-email');
-  if(!co.value.trim()){out.hidden=false;out.textContent=t('Please add your company name.');co.focus();return;}
-  if(!/^\S+@\S+\.\S+$/.test(em.value.trim())){out.hidden=false;out.textContent=t('Please enter a valid email address, for example buyer@company.eu.');em.focus();return;}
-  var txt='Company: '+co.value.trim()+'\nEmail: '+em.value.trim()+'\nCountry: '+($('f-country').value.trim()||'-')+'\nCategory: '+($('f-cat').value||'Any')+'\n\n'+($('f-msg').value.trim()||'Please send your catalogs.');
+/* Contact form: sends an email to info@toyzaworld.com via Web3Forms.
+   The access key is set in site.json ("formKey"). Without a key the form falls back to "copy your request". */
+function showPrepared(out,txt,intro){
   out.hidden=false;out.textContent='';
-  out.appendChild(el('p','',LANG==='nl'?('Uw aanvraag staat klaar. Kopieer hem en mail hem naar '+(S.info.email||'ons')+'.'):('Your request is ready. Copy it and email it to '+(S.info.email||'us')+'.')));
+  out.appendChild(el('p','',intro));
   var pre=el('pre','',txt);pre.style.cssText='white-space:pre-wrap;font:inherit;margin:8px 0;background:var(--white);border:1px solid var(--line);border-radius:6px;padding:10px';
   var b=el('button','copy',t('Copy request'));b.type='button';out.appendChild(pre);out.appendChild(b);
   b.addEventListener('click',function(){copyText(txt,b,pre);});
+}
+function syncFormMode(){
+  var has=!!S.formKey;
+  var btn=$('f-send'),note=$('formNote');
+  var bt=has?'Send Request':'Prepare Request';
+  var nt=has?'Your request goes straight to our sourcing team by email.':'This page doesn’t send messages yet. Submitting prepares your request so you can copy it into an email.';
+  btn.textContent=bt;note.textContent=nt;translateTree(btn.parentNode);
+}
+var sending=false;
+$('inquiry').addEventListener('submit',function(e){
+  e.preventDefault();if(sending)return;var out=$('formOut');out.className='success';
+  var v=function(id){return $(id).value.trim();};
+  ['f-name','f-company','f-email','f-country','f-msg','f-consent'].forEach(function(id){$(id).removeAttribute('aria-invalid');});
+  var checks=[['f-name',!!v('f-name'),'Please fill in your name.'],['f-company',!!v('f-company'),'Please add your company name.'],
+    ['f-email',/^\S+@\S+\.\S+$/.test(v('f-email')),'Please enter a valid email address, for example buyer@company.eu.'],
+    ['f-country',!!v('f-country'),'Please fill in your country.'],['f-msg',!!v('f-msg'),'Please write a short message.'],
+    ['f-consent',$('f-consent').checked,'Please tick the consent box to send your request.']];
+  for(var i=0;i<checks.length;i++){if(!checks[i][1]){var fld=$(checks[i][0]);fld.setAttribute('aria-invalid','true');out.hidden=false;out.className='success error';out.textContent=t(checks[i][2]);fld.focus();return;}}
+  var opt=function(id){var o=$(id);return o.value?o.options[o.selectedIndex].text:'-';};
+  var f={name:v('f-name'),job:v('f-job')||'-',company:v('f-company'),btype:$('f-btype').value||'-',email:v('f-email'),phone:v('f-phone')||'-',
+    country:v('f-country'),website:v('f-web')||'-',type:$('f-type').value,category:$('f-cat').value||'Any',volume:$('f-volume').value||'-',subject:v('f-subject')||'-',message:v('f-msg')};
+  var txt='Type of request: '+f.type+'\nName: '+f.name+'\nJob title: '+f.job+'\nCompany: '+f.company+'\nType of business: '+f.btype+'\nEmail: '+f.email+'\nPhone: '+f.phone+'\nCountry: '+f.country+'\nWebsite: '+f.website+'\nCategory: '+f.category+'\nExpected order volume: '+f.volume+'\nSubject: '+f.subject+'\n\n'+f.message;
+  var mail=S.info.email||'info@toyzaworld.com';
+  if(!S.formKey){showPrepared(out,txt,LANG==='nl'?('Uw aanvraag staat klaar. Kopieer hem en mail hem naar '+mail+'.'):('Your request is ready. Copy it and email it to '+mail+'.'));return;}
+  var btn=$('f-send'),old=btn.textContent;sending=true;btn.disabled=true;btn.textContent=t('Sending…');out.hidden=true;
+  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+    body:JSON.stringify({access_key:S.formKey,subject:f.type+' – '+f.company+' ('+f.name+')',from_name:'ToyzaWorld website',
+      email:f.email,name:f.name,'Type of request':f.type,'Name':f.name,'Job title':f.job,'Company':f.company,'Type of business':f.btype,'Email':f.email,'Phone':f.phone,
+      'Country':f.country,'Website':f.website,'Category of interest':f.category,'Expected order volume':f.volume,'Subject':f.subject,'Message':f.message,
+      'Website language':LANG==='nl'?'Dutch':'English','Consent':'Yes',botcheck:$('f-botcheck').checked})})
+  .then(function(r){return r.json().catch(function(){return {success:false};});})
+  .then(function(j){
+    if(j&&j.success){out.hidden=false;out.className='success';out.textContent=LANG==='nl'?('Bedankt, '+f.name+'! Uw aanvraag is verstuurd. We antwoorden u op '+f.email+'.'):('Thank you, '+f.name+'! Your request has been sent. We will reply to '+f.email+'.');$('inquiry').reset();}
+    else throw new Error('fail');
+  })
+  .catch(function(){showPrepared(out,txt,LANG==='nl'?('Versturen is niet gelukt. Kopieer uw aanvraag en mail hem naar '+mail+'.'):('Sending didn’t work. Please copy your request and email it to '+mail+'.'));})
+  .then(function(){sending=false;btn.disabled=false;btn.textContent=old;});
 });
 
 /* ---------- data load (static files on your server) ---------- */
-function onData(){S.loaded=true;renderPublic();}
+function onData(){S.loaded=true;renderPublic();syncFormMode();}
 async function getJSON(path){var r=await fetch(path+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error(path+' '+r.status);return r.json();}
 /* Live data from the existing ToyzaWorld dashboard (Firebase Firestore, public read) */
 var FS='https://firestore.googleapis.com/v1/projects/toyzaworld/databases/(default)/documents/siteConfig/';
@@ -796,6 +876,7 @@ async function init(){
   try{var cfg=await getJSON('site.json');
     if(cfg.info)S.info=Object.assign(clone(DEFAULT_INFO),cfg.info);
     if(cfg.seo)S.seo=Object.assign(clone(DEFAULT_SEO),cfg.seo);
+    if(typeof cfg.formKey==='string')S.formKey=cfg.formKey.trim();
     if(cfg.home){S.home={cards:(cfg.home.cards&&cfg.home.cards.length)?cfg.home.cards:clone(DEFAULT_CARDS),featured:cfg.home.featured&&cfg.home.featured.length?cfg.home.featured:null};}
   }catch(e){}
   // 2. texts + contact details from the dashboard (siteConfig/siteInfo)
