@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>ToyzaWorld</title>
-<script>/* contact page = same file, shown in "contact" mode */if(/\/contact(\.html)?\/?$/i.test(location.pathname))document.documentElement.classList.add('page-contact');</script>
+<script>/* contact page = same file, shown in "contact" mode */if(/\/contact(\.html)?\/?$/i.test(location.pathname))document.documentElement.classList.add('page-contact');else if(/\/about(\.html)?\/?$/i.test(location.pathname))document.documentElement.classList.add('page-about');</script>
 <meta name="description" content="Browse toy catalogs from selected manufacturers, organized for European B2B buyers. Request EXW pricing, MOQ, lead times and compliance documents.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -155,6 +155,21 @@ html[lang="nl"] .cat-links a.visited::after,html[lang="nl"] .cat-group a.visited
 /* Category picture placeholder (until a photo is uploaded) */
 .cat-head .ph{width:100%;aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;font-size:46px;font-weight:800;color:var(--navy);letter-spacing:-1px}
 section[id]{scroll-margin-top:84px}
+/* About page */
+html:not(.page-about) #about{display:none!important}
+.page-about #top,.page-about #categories,.page-about #why,.page-about #how,.page-about .cta,.page-about #contact{display:none!important}
+.page-about .back-home{display:inline-flex}
+.about-page{padding-block:40px 72px}
+.about-grid{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
+.about-text{flex:1 1 480px;min-width:0;max-width:68ch}
+.about-text h1{margin:0;font-size:clamp(32px,4.5vw,48px);line-height:1.1;font-weight:800;letter-spacing:-1px}
+.about-text .about-lead{font-size:20px;font-weight:700;color:var(--link);margin:14px 0 24px;line-height:1.4}
+.about-text p{font-size:17px;line-height:1.7;color:var(--navy-2);margin:0 0 16px}
+.about-text .about-tagline{font-size:20px;font-weight:700;color:var(--navy);margin:28px 0 24px;padding-top:20px;border-top:1px solid var(--line)}
+.about-tagline .tz{color:var(--red)}
+.about-photo{flex:1 1 360px;min-width:0;margin:0;position:sticky;top:110px}
+.about-photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:72% 40%;border-radius:16px;box-shadow:var(--shadow-hover)}
+@media (max-width:900px){.about-photo{position:static}.about-photo img{aspect-ratio:16/10}}
 /* Separate contact page */
 html:not(.page-contact) #contact{display:none!important}
 .page-contact #top,.page-contact #categories,.page-contact #why,.page-contact #how,.page-contact .cta{display:none!important}
@@ -292,7 +307,7 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
     <nav class="main-nav" id="mainNav" aria-label="Main">
       <a href="/">Home</a>
       <a href="#all-categories" data-open-all>Catalog</a>
-      <a href="/#top">About</a>
+      <a href="/about">About</a>
       <a href="/#how">How It Works</a>
       <a href="/contact">Contact</a>
     </nav>
@@ -413,6 +428,25 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
   </div>
 </section>
 
+<section class="about-page wrap" id="about" aria-labelledby="aboutTitle">
+  <a class="back-home" href="/">← Back to home</a>
+  <div class="about-grid">
+    <div class="about-text">
+      <h1 id="aboutTitle">About ToyzaWorld</h1>
+      <p class="about-lead">Your European Partner for Innovative Toy Sourcing</p>
+      <p>ToyzaWorld is a Netherlands-based B2B toy sourcing and wholesale company connecting European businesses with reliable manufacturers in China.</p>
+      <p>We specialize in discovering innovative, distinctive, and market-ready toys across a diverse range of categories. Our goal is to help European wholesalers, distributors, and importers discover exciting products, expand their portfolios, and stay competitive in a constantly evolving market.</p>
+      <p>What makes ToyzaWorld different is our selective approach. Rather than simply offering large product catalogs, we focus on identifying toys that stand out through creativity, originality, play value, and commercial potential in the European market.</p>
+      <p>Beyond product discovery, we support our business partners with supplier communication, sourcing coordination, product information, and order management.</p>
+      <p>We also recognize the importance of product safety and European regulatory requirements, working with manufacturers to obtain relevant compliance documentation and support informed sourcing decisions.</p>
+      <p>At ToyzaWorld, we believe successful business relationships are built on transparency, reliability, and long-term cooperation.</p>
+      <p class="about-tagline"><span class="tz">ToyzaWorld —</span> <span>Discover Better Toys. Build Stronger Partnerships.</span></p>
+      <a class="btn btn-primary" href="/contact">Ask about our collections <span aria-hidden="true">→</span></a>
+    </div>
+    <figure class="about-photo"><img src="cta.jpg" alt="Child in a pilot costume laughing with arms spread wide"></figure>
+  </div>
+</section>
+
 <section class="contact wrap" id="contact" aria-labelledby="contactTitle">
   <a class="back-home" href="/">← Back to home</a>
   <div class="contact-grid">
@@ -480,7 +514,7 @@ footer .w1{color:#FF6B5E}footer .w2{color:#FFA24A}footer .w3{color:#FFD24A}foote
       <span class="logo-tag">Global Toys • European Markets</span>
     </a>
     <nav class="foot-nav" aria-label="Footer">
-      <a href="/">Home</a><a href="#all-categories" data-open-all>Catalog</a><a href="/#top">About</a><a href="/#how">How It Works</a><a href="/contact">Contact</a><a href="dashboard.html">Dashboard</a>
+      <a href="/">Home</a><a href="#all-categories" data-open-all>Catalog</a><a href="/about">About</a><a href="/#how">How It Works</a><a href="/contact">Contact</a><a href="dashboard.html">Dashboard</a>
     </nav>
     <div class="social">
       <a href="https://www.linkedin.com/" aria-label="LinkedIn"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2.5 2.5 0 015 0v4M12 10v7"/></svg></a>
@@ -562,6 +596,7 @@ var NL={
 "Discover toy collections from selected manufacturers, organized for European buyers. Browse by category, explore product catalogs, and contact us for pricing, MOQ, lead times, and available compliance documentation.":"Ontdek speelgoedcollecties van geselecteerde fabrikanten, overzichtelijk voor Europese inkopers. Blader per categorie, bekijk productcatalogi en neem contact met ons op voor prijzen, MOQ, levertijden en beschikbare conformiteitsdocumentatie.",
 "Toyza World connects European retailers with the best toy manufacturers across 40+ countries. Explore our global network through an interactive catalog.":"Toyza World verbindt Europese retailers met de beste speelgoedfabrikanten in meer dan 40 landen. Verken ons wereldwijde netwerk via een interactieve catalogus.",
 "Welcome to Toyza World.":"Welkom bij Toyza World.",
+"About ToyzaWorld":"Over ToyzaWorld","Your European Partner for Innovative Toy Sourcing":"Uw Europese partner voor innovatieve speelgoedinkoop","ToyzaWorld is a Netherlands-based B2B toy sourcing and wholesale company connecting European businesses with reliable manufacturers in China.":"ToyzaWorld is een in Nederland gevestigd B2B-bedrijf in speelgoedinkoop en groothandel dat Europese bedrijven verbindt met betrouwbare fabrikanten in China.","We specialize in discovering innovative, distinctive, and market-ready toys across a diverse range of categories. Our goal is to help European wholesalers, distributors, and importers discover exciting products, expand their portfolios, and stay competitive in a constantly evolving market.":"Wij zijn gespecialiseerd in het vinden van innovatief, onderscheidend en marktklaar speelgoed in een breed scala aan categorieën. Ons doel is Europese groothandels, distributeurs en importeurs te helpen aansprekende producten te ontdekken, hun assortiment uit te breiden en concurrerend te blijven in een voortdurend veranderende markt.","What makes ToyzaWorld different is our selective approach. Rather than simply offering large product catalogs, we focus on identifying toys that stand out through creativity, originality, play value, and commercial potential in the European market.":"Wat ToyzaWorld onderscheidt, is onze selectieve aanpak. In plaats van simpelweg grote productcatalogi aan te bieden, richten wij ons op speelgoed dat opvalt door creativiteit, originaliteit, speelwaarde en commercieel potentieel op de Europese markt.","Beyond product discovery, we support our business partners with supplier communication, sourcing coordination, product information, and order management.":"Naast het ontdekken van producten ondersteunen wij onze zakelijke partners bij de communicatie met leveranciers, de coördinatie van de inkoop, productinformatie en orderbeheer.","We also recognize the importance of product safety and European regulatory requirements, working with manufacturers to obtain relevant compliance documentation and support informed sourcing decisions.":"Wij begrijpen ook het belang van productveiligheid en Europese regelgeving. Daarom werken wij samen met fabrikanten om de relevante conformiteitsdocumentatie te verkrijgen en weloverwogen inkoopbeslissingen te ondersteunen.","At ToyzaWorld, we believe successful business relationships are built on transparency, reliability, and long-term cooperation.":"Bij ToyzaWorld geloven wij dat succesvolle zakelijke relaties gebouwd worden op transparantie, betrouwbaarheid en langdurige samenwerking.","Discover Better Toys. Build Stronger Partnerships.":"Ontdek beter speelgoed. Bouw sterkere partnerschappen.","Child in a pilot costume laughing with arms spread wide":"Lachend kind in een pilotenkostuum met gespreide armen","Ask about our collections":"Vraag naar onze collecties",
 "Toyza World connects European retailers with the best toy manufacturers. Explore our global network through an interactive catalog.":"Toyza World verbindt Europese retailers met de beste speelgoedfabrikanten. Verken ons wereldwijde netwerk via een interactieve catalogus.",
 "Explore Catalogs":"Bekijk catalogi","Contact ToyzaWorld":"Contact met ToyzaWorld","Global Suppliers":"Wereldwijde leveranciers","Selected Manufacturers":"Geselecteerde fabrikanten",
 "B2B Focus":"B2B-focus","For European Buyers":"Voor Europese inkopers","Wide Product Range":"Breed productassortiment","Toys for Every Market":"Speelgoed voor elke markt",
@@ -671,9 +706,10 @@ function applyInfo(){
   var w=(I.welcome||'').trim();
   $('welcomeText').textContent=w;
   $('welcome').hidden=!w||load('tw-welcome-dismissed')===w;
-  var isContact=document.documentElement.classList.contains('page-contact');
-  document.title=(isContact?(LANG==='nl'?'Contact – ':'Contact – '):'')+(S.seo.title||'ToyzaWorld');
-  document.querySelectorAll('#mainNav a').forEach(function(a){if(isContact&&a.getAttribute('href')==='/contact')a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+  var isContact=document.documentElement.classList.contains('page-contact'),isAbout=document.documentElement.classList.contains('page-about');
+  document.title=(isContact?'Contact – ':isAbout?(LANG==='nl'?'Over ons – ':'About – '):'')+(S.seo.title||'ToyzaWorld');
+  var cur=isContact?'/contact':isAbout?'/about':null;
+  document.querySelectorAll('#mainNav a').forEach(function(a){if(cur&&a.getAttribute('href')===cur)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   setMeta('description',S.seo.description);setMeta('keywords',S.seo.keywords);
 }
 function setMeta(name,val){var m=document.querySelector('meta[name="'+name+'"]');if(!m){m=document.createElement('meta');m.name=name;document.head.appendChild(m);}m.content=val||'';}
